@@ -1,15 +1,6 @@
 const mongoose = require('mongoose')
 const WebSocket = require('ws')
-
-const Candlestick = new mongoose.model('candlestick', {
-    timestamp: Date,
-    tickername: { type: String, required: true },
-    open: Number,
-    high: Number,
-    low: Number,
-    close: Number,
-    volume: Number,
-})
+const Candlestick = require('./db_schemas/candlestick').Candlestick
 
 class TickerMaker {
 
