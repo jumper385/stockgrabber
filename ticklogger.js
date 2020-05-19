@@ -30,7 +30,7 @@ class TickerMaker {
     }
 
     async createTicker(payload) {
-
+        console.log(JSON.stringify(payload))
         let payloadtimestamp  = new Date(payload.time)
         let nearestmin = new Date(Math.floor(payloadtimestamp/60/1000)*1000*60)
         let candlequery = await Candlestick.find({timestamp: nearestmin, tickername: this.tickername})
