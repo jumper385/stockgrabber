@@ -1,3 +1,4 @@
+require('dotenv').config()
 const bots = require('./tradebot')
 const express = require('express')
 const schemas = require('./db_schemas/candlestick')
