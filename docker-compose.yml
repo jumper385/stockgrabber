@@ -9,3 +9,17 @@ services:
         restart: unless-stopped
         networks:
             - default
+
+    db: 
+        image: mongo:latest
+        environment: 
+            MONGO_INITDB_ROOT_USERNAME: chenry
+            MONGO_INITDB_ROOT_PASSWORD: st18chenh
+        ports:
+            - 27017:5050
+        volumes:
+            - stockdata:/data/db
+        restart: unless-stopped
+
+volumes:
+    stockdata:

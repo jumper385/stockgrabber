@@ -1,7 +1,6 @@
-FROM node:slim
+FROM node
 WORKDIR /app
 COPY . /app
-RUN yarn install
-COPY . . 
+RUN npm install
 EXPOSE 3000
 CMD ["node","index.js"]
