@@ -19,4 +19,4 @@ app.get('/', async(req,res) => {
     res.json(await schemas.Candlestick.find())
 })
 
-app.listen(process.env.PORT || 3000, () => console.log('api initialized'))
+app.listen(3000, () => console.log('api initialized'))
