@@ -1,5 +1,6 @@
 const WebSocket = require('ws')
 const Candlestick = require('./db_schemas/candlestick').Candlestick
+const db = require('./db_schemas/candlestick').db
 
 class TickerMaker {
 
@@ -17,7 +18,7 @@ class TickerMaker {
     }
 
     log(message){
-        console.log(`${new Date()}: [${this.tickername}] ${message}`)
+        console.log(`${new Date()}: [${this.tickername}] [DB-STATUS: ${db.states[db._readyState]}] ${message}`)
     }
 
     async connect() {

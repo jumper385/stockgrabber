@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 console.log(process.env.DATABASE)
 mongoose.connect(`${process.env.DATABASE}`, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
-console.log(db)
 
 db.on('error', e => {
     console.log(`${new Date()}: [MONGO-DB] ${e}`)
@@ -19,5 +18,6 @@ const Candlestick = new mongoose.model('candlestick', {
 })
 
 module.exports = {
-    Candlestick: Candlestick
+    Candlestick: Candlestick,
+    db: db
 }
