@@ -16,10 +16,14 @@ class TickerMaker {
         this.currentCandle = {}
     }
 
+    log(message){
+        console.log(`${new Date()}: [${this.tickername}] ${message}`)
+    }
+
     async connect() {
         this.feed = await this.ws.on('open', () => {
             this.ws.send(JSON.stringify(this.request))
-            console.log(`${this.tickername} feed initialized`)
+            this.log(`${this.tickername} feed initialized`)
         })
 
         this.ws.on('message', e => {
@@ -29,8 +33,7 @@ class TickerMaker {
 
     }
 
-    async createTicker(payload) {
-        console.log(JSON.stringify(payload))
+    async createTicker(payload) { 
         let payloadtimestamp  = new Date(payload.time)
         let nearestmin = new Date(Math.floor(payloadtimestamp/60/1000)*1000*60)
         let candlequery = await Candlestick.find({timestamp: nearestmin, tickername: this.tickername})
@@ -45,7 +48,7 @@ class TickerMaker {
                 close: payload.price, 
                 volume: payload.volume_24h,
             })
-            console.log(`created new ${this.tickername} tick`)
+            this.log(`created new ${this.tickername} tick`)
             
         } else {
             let updated = await candlequery[0].updateOne({$set:{
@@ -59,8 +62,9 @@ class TickerMaker {
                 let deleted = await Promise.all(repeatedDocuments.map(doc => {
                     return doc.deleteOne()
                 }))
-                console.log(deleted && `deleted ${deleted.length} copies`)
+                this.log(deleted && `deleted ${deleted.length} copies`)
             }
+            this.log(updated && `updated...`)
         }
 
     }
