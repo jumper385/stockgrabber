@@ -9,12 +9,13 @@ record1 = new logger.TickerMaker(tickername = 'tBTCUSD')
 record1.candleFeed()
 record1.candles.subscribe({
     next: async data => {
-        console.log(data)
         let findcandle = await mongohelper.Candlestick.find({ timestamp: data.timestamp, symbol: data.symbol })
         if (findcandle.length == 0) {
-            mongohelper.Candlestick.create(data)
+            let newdoc = mongohelper.Candlestick.create(data)
+            console.log(newdoc)
         } else {
-            findcandle[0].updateOne({ $set: { data } })
+            let update = await mongohelper.Candlestick.findOneAndUpdate({ timestamp: data.timestamp, symbol: data.symbol }, { $set: { data } })
+            console.log(update)
         }
     }
 })
