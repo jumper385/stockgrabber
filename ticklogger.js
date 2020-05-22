@@ -24,7 +24,6 @@ class TickerMaker {
         this.ws.on('open', () => {
             console.log(`${this.tickername} feed initialized`)
             this.ws.send(JSON.stringify(this.request))
-            this.log(`${this.tickername} feed initialized`)
         })
 
         this.ws.on('message', e => {
