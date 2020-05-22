@@ -1,3 +1,4 @@
+require('dotenv').config()
 const bots = require('./tradebot')
 const mongohelper = require('./mongoose/schemas')
 
