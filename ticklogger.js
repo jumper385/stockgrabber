@@ -1,5 +1,6 @@
 const WebSocket = require('ws')
 const { Subject } = require('rxjs')
+const mongohelpers = require('./mongoose/schemas')
 
 class TickerMaker {
 
@@ -27,6 +28,7 @@ class TickerMaker {
         })
 
         this.ws.on('message', e => {
+            console.log(`we have an update!!!`)
             let payload = JSON.parse(e)
             switch (payload.event) {
                 case 'info':
