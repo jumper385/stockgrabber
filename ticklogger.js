@@ -1,5 +1,10 @@
-const WebSocket = require('ws')
-const { Subject } = require('rxjs')
+const WebSocket = require('ws') <<
+    << << < HEAD
+const { Subject } = require('rxjs') ===
+    === =
+    const Candlestick = require('./db_schemas/candlestick').Candlestick
+const db = require('./db_schemas/candlestick').db >>>
+    >>> > 8e1 f78e725c7e13fb16b0db01ff32dd9cda23edd
 
 class TickerMaker {
 
@@ -24,6 +29,7 @@ class TickerMaker {
         this.ws.on('open', () => {
             console.log(`${this.tickername} feed initialized`)
             this.ws.send(JSON.stringify(this.request))
+            this.log(`${this.tickername} feed initialized`)
         })
 
         this.ws.on('message', e => {

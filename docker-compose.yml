@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+    cryptoapi:
+        
+        build: .
+        ports:
+            - 8080:3000
+        restart: unless-stopped
+        networks:
+            - default
+
+    db: 
+        image: mongo:latest
+
+        ports:
+            - 5050:27017
+        volumes:
+            - stockdata:/data/db
+        restart: unless-stopped
+
+volumes:
+    stockdata:
