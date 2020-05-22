@@ -1,10 +1,5 @@
-const WebSocket = require('ws') <<
-    << << < HEAD
-const { Subject } = require('rxjs') ===
-    === =
-    const Candlestick = require('./db_schemas/candlestick').Candlestick
-const db = require('./db_schemas/candlestick').db >>>
-    >>> > 8e1 f78e725c7e13fb16b0db01ff32dd9cda23edd
+const WebSocket = require('ws')
+const { Subject } = require('rxjs')
 
 class TickerMaker {
 
